@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+// eslint-disable-next-line
+
+import React, { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAuthentication } from '../../hooks/useAuthentication';
 
 function Register() {
   const [nomeUsuario, setNomeUsuario] = useState("");
@@ -9,24 +12,44 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
-  const cadastrar = (e) => {
+  const {createUser, error:authError, loading} = useAuthentication();
+
+  const cadastrar = async (e) => {
     e.preventDefault();
     setError("");
 
     const dados = {
-      nomeUsuario,
-      email,
-      senha,
+        nomeUsuario,
+        email,
+        senha,
+        displayName: nomeUsuario
     };
+    
+    console.log("Dados antes da verificação:", dados);
 
-    if (senha !== confirmPassword) {
-      toast.error("As senhas precisam ser iguais!");
-    } else {
-      // Lógica para processar o formulário quando as senhas coincidem
-      console.log(dados);
-      toast.success("Cadastro realizado com sucesso!");
+    try {
+
+      if (senha.length < 6) {
+        toast.error("A senha precisa conter pelo menos 6 caracteres");
+      } else if (senha !== confirmPassword) {
+        toast.error("As senhas precisam ser iguais!");
+      } else {
+        // Lógica para processar o formulário quando as senhas coincidem
+        const res = await createUser({ ...dados, password: senha });
+        console.log("Dados do usuário:", res);
+      }
+
+    } catch (error) {
+        console.error("Erro ao criar usuário:", error.message);
     }
-  };
+};
+
+
+  useEffect(()=>{
+    if(authError){
+      setError(authError)
+    }
+  },[setError])
 
   return (
     <div>
@@ -61,7 +84,7 @@ function Register() {
           </div>
 
           <div className="form-floating mb-3">
-            <input
+          <input
               type="password"
               className="form-control"
               id="floatingPassword1"
@@ -90,9 +113,13 @@ function Register() {
         {error && <div className="alert alert-danger mt-3">{error}</div>}
 
         <div className="d-grid gap-2 col-6 mx-auto mt-3">
-          <button className="btn btn-primary" type="submit">
+          {!loading && <button className="btn btn-primary" type="submit">
             Cadastrar
-          </button>
+          </button> }
+        
+        {loading && (<button className="btn btn-primary" disabled type="submit">
+            Aguarde...
+          </button>)}
         </div>
       </form>
     </div>

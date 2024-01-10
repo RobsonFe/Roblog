@@ -1,5 +1,7 @@
 import React from 'react';
 
+const anoAtual = new Date().getFullYear();
+
 function Footer() {
   return (
     <footer className="bg-body-tertiary text-center text-lg-start fixed-bottom w-100 shadow-lg p-3 bg-body-tertiary rounded">
@@ -7,7 +9,7 @@ function Footer() {
         <a className="text-body" style={{ textDecoration: 'none' }}>
           <span className='fw-medium'>Ro</span><span className='fw-bold'>Blog </span>
         </a>
-         © 2024 Copyright
+         © {anoAtual} Copyright
       </div>
     </footer>
   );

@@ -17,20 +17,6 @@ Bem-vindo ao Roblog, um blog construído com React e Firebase, onde compartilho 
 - **Toastify:** Lib para exibir notificações elegantes em React.
 - **Firebase:** Plataforma de desenvolvimento de aplicativos móveis e web.
 
-## Como Iniciar
-
-1. Clone este repositório: `git clone https://github.com/RobsonFe/Roblog.git`
-2. Navegue até o diretório do projeto: `cd Roblog`
-3. Instale as dependências: `npm install`
-4. Configure as credenciais do Firebase em `src/firebase/config.js`.
-5. Inicie o aplicativo: `npm start`
-
-Certifique-se de configurar corretamente as credenciais do Firebase antes de iniciar o aplicativo.
-
-## Contribuições
-
-Contribuições são bem-vindas! Sinta-se à vontade para enviar pull requests ou abrir issues para sugestões e melhorias.
-
 ## Contato
 
 Para entrar em contato, envie um e-mail para [robson-ferreiradasilva@hotmail](robson-ferreiradasilva@hotmail.com).

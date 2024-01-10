@@ -1,5 +1,5 @@
-import { initializeApp } from "firebase/app";
-import { getFirestore } from 'firebase/firebase';
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';  
 
 const firebaseConfig = {
   apiKey: "AIzaSyAVSvYqzU2VpMbRzdltyrIct7xj65AyPkE",
@@ -14,4 +14,4 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
-export{db};
+export { db };
