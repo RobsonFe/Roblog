@@ -52,9 +52,6 @@ export const useAuthentication =() =>{
             });
             setLoading(false);
             toast.success("Cadastro realizado com sucesso!");
-    
-            // Retorna um objeto contendo o usuário e outros dados se necessário
-            return { user, otherData: "alguma informação adicional" };
         } catch (error) {
             console.error(error);
     

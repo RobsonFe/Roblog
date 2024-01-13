@@ -2,6 +2,7 @@ import './App.css';
 
 //React Routes
 import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { onAuthStateChanged } from 'firebase/auth';
 
 //Context API do React
 import { AuthProvider } from './context/AuthContext';
@@ -10,6 +11,10 @@ import { AuthProvider } from './context/AuthContext';
 import { useState, useEffect } from 'react';
 import { useAuthentication } from './hooks/useAuthentication';
 
+//API do Toastify
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+
 //Paginas
 import Home from './pages/Home/Home';
 import About from './pages/About/About';
@@ -17,11 +22,9 @@ import Footer from './Components/Footer';
 import Navbar from './Components/Navbar';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
-import { ToastContainer } from 'react-toastify';
+import CreatePost from './pages/CreatePost/CreatePost';
+import Dashboard from './pages/Dashboard/Dashboard';
 
-//API do Toastify
-import 'react-toastify/dist/ReactToastify.css';
-import { onAuthStateChanged } from 'firebase/auth';
 
 function App() {
 
@@ -37,8 +40,10 @@ function App() {
   }, [auth]);
 
   if(loadingUser){
-    return <div className="spinner-border justify-content-center text-secondary" role="status">
-    <span className="visually-hidden">Carregando...</span>
+    return <div className="d-flex justify-content-center">
+    <div className="spinner-border" role="status">
+      <span className="visually-hidden">Carregando...</span>
+    </div>
   </div>
   }
 
@@ -53,6 +58,8 @@ function App() {
             <Route path='/about' element={<About />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/posts/create' element={<CreatePost />} />
+            <Route path='/dashboard' element={<Dashboard />} />
           </Routes>
         </div>
         <Footer />
