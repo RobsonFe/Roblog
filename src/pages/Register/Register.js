@@ -24,8 +24,6 @@ function Register() {
         senha,
         displayName: nomeUsuario
     };
-    
-    console.log("Dados antes da verificação:", dados);
 
     try {
 
@@ -34,7 +32,6 @@ function Register() {
       } else if (senha !== confirmPassword) {
         toast.error("As senhas precisam ser iguais!");
       } else {
-        // Lógica para processar o formulário quando as senhas coincidem
         const res = await createUser({ ...dados, password: senha });
         console.log("Dados do usuário:", res);
       }

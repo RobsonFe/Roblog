@@ -41,8 +41,6 @@ export const useAuthentication =() =>{
         setError(null);
     
         try {
-            console.log("Dados antes da verificação:", data);
-            console.log("Senha recebida em createUser:", data.password);
             const { user } = await createUserWithEmailAndPassword(
                 auth,
                 data.email,
@@ -68,13 +66,9 @@ export const useAuthentication =() =>{
                 setLoading(false);
                 toast.error("Ocorreu um erro, tente mais tarde");
             }
-    
-            // Retorne algo aqui, por exemplo, o próprio erro
             return { error };
         }
     };
-    
-    
 
 
     useEffect(()=>{
